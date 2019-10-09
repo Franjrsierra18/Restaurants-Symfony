@@ -5,46 +5,33 @@
 
 
   <div class="card-deck">
-  {% for restaurante in restaurantes%}
-    <div class="card">
-      <img src="{{ asset('images/restaurante1.jpg') }}" class="card-img-top" alt="restaurante1">
-      <div class="card-body">
-        <h5 class="card-title"><a href="{{ path('restaurantes_sedes', {'sedes': restaurante.localidad}) }}">{{ restaurante.nombre }}</a></h5>
-        <p class="card-text">{{ restaurante.localidad }}.This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
+    <div class="row">
+      {% for restaurante in restaurantes%}
+        <div class="col-lg-4">
+          <div class="card my-3">
+            <img src="{{ asset("images/restaurante#{restaurante.id}.jpg") }}" class="card-img-top" alt="restaurante1">
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ restaurante.nombre }}
+              </h5>
+              <a href="/restaurantes/{{ restaurante.id }}" class="btn btn-dark">Show</a>
+              <a href="/restaurantes/edit/{{ restaurante.id }}" class="btn btn-warning">Edit</a>
+              <a href="/restaurantes/delete/{{ restaurante.id }}" class="btn btn-danger delete-article" data-id="{{ restaurante.id }}">Delete</a>
+              <p class="card-text">{{ restaurante.localidad }}.This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-  {% endfor %}
-    {# <div class="card">
-      <img src="{{ asset('images/restaurante2.jpg') }}" class="card-img-top" alt="restaurante2">
-      <div class="card-body">
-        <h5 class="card-title"><a href="{{ path('restaurantes_sedes', {'sedes': 'barcelona'}) }}">Barcelona</a></h5>
-        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-    <div class="card">
-      <img src="{{ asset('images/restaurante3.jpg') }}" class="card-img-top" alt="restaurante3">
-      <div class="card-body">
-        <h5 class="card-title"><a href="{{ path('restaurantes_sedes', {'sedes': 'valencia'}) }}">Valencia</a></h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div>
-    </div>
-  </div> #}
+  {% endblock %}
 
-{% endblock %}
-
-{% block stylesheets %}
-  <style>
-    img {
-      height: 300px;
-    }
-  </style>
-{% endblock %}
+  {% block stylesheets %}
+    <style>
+      img {
+        height: 300px;
+      }
+    </style>
+  {% endblock %}

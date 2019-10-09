@@ -53,14 +53,14 @@ class RestaurantesController extends Controller
       ))
       ->getForm();
 
-      $form->handleRequest($request);
-      if($form->isSubmitted() && $form->isValid()) {
-        $restaurante = $form->getData();
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($restaurante);
-        $entityManager->flush();
-        return $this->redirectToRoute('restaurantes');
-      }
+    $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+      $restaurante = $form->getData();
+      $entityManager = $this->getDoctrine()->getManager();
+      $entityManager->persist($restaurante);
+      $entityManager->flush();
+      return $this->redirectToRoute('restaurantes');
+    }
 
 
     return $this->render('default/new.html.twig', [
@@ -69,15 +69,56 @@ class RestaurantesController extends Controller
   }
 
   /**
-   * Matches /restaurantes/*
-   * but not /restaurantes/slug/extra-part
-   *
-   * @Route("/restaurantes/{sedes}", name="restaurantes_sedes")
+   * @Route("/restaurantes/edit/{id}", name="edit_restaurantes")
+   * Method({"GET", "POST"})
    */
-
-  public function restauranteSedeAction(Request $request, $sedes)
+  public function edit(Request $request, $id)
   {
-    dump($sedes);
-    return $this->render('default/'.$sedes.'.html.twig');
+    $restaurante = new Restaurante();
+    $restaurante = $this->getDoctrine()->getRepository(Restaurante::class)->find($id);
+    $form = $this->createFormBuilder($restaurante)
+      ->add('nombre', TextType::class, array('attr' => array('class' => 'form-control')))
+      ->add('localidad', TextType::class, array(
+        'required' => false,
+        'attr' => array('class' => 'form-control')
+      ))
+      ->add('save', SubmitType::class, array(
+        'label' => 'Update',
+        'attr' => array('class' => 'btn btn-primary mt-3')
+      ))
+      ->getForm();
+    $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+      $entityManager = $this->getDoctrine()->getManager();
+      $entityManager->flush();
+      return $this->redirectToRoute('restaurantes');
+    }
+    return $this->render('default/edit.html.twig', array(
+      'form' => $form->createView()
+    ));
+  }
+
+  /**
+   * @Route("/restaurantes/{id}", name="restaurante_show")
+   */
+  public function show($id)
+  {
+    $restaurante = $this->getDoctrine()->getRepository(Restaurante::class)->find($id);
+    return $this->render('default/show.html.twig', array('restaurante' => $restaurante));
+  }
+
+  /**
+   * @Route("/restaurantes/delete/{id}")
+   * Method({"DELETE"})
+   */
+  public function delete(Request $request, $id)
+  {
+    $restaurante = $this->getDoctrine()->getRepository(Restaurante::class)->find($id);
+    $entityManager = $this->getDoctrine()->getManager();
+    $entityManager->remove($restaurante);
+    $entityManager->flush();
+    $response = new Response();
+    $response->send();
+    return $this->redirectToRoute('restaurantes');
   }
 }
