@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid">
+  <div class="jumbotron-fluid card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
+    <div class="text-white text-center py-5 px-4">
+      <div>
+        <h2 class="card-title h1-responsive pt-3 mb-5 font-bold">
+          <strong>Welcome!</strong>
+        </h2>
+        <p class="mx-5 mb-5">Search for <strong>Michellin Stars</strong> restaurants in your area. 
+        </p>
+        <a class="btn btn-outline-white btn-md" href="{{ path('restaurantes') }}">
+          <i class="fas fa-clone left"></i>
+          View restaurants</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block stylesheets %}
+  <style></style>
+{% endblock %}

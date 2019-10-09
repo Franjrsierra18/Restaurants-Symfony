@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{# <div class="container-fluid">
+  <div class="jumbotron-fluid card card-image" style="background-image: url({{ asset('images/restaurante1.jpg') }});">
+    <div class="text-white text-center py-5 px-4">
+      <div>
+        <h2 class="card-title h1-responsive pt-3 mb-5 font-bold">
+          <strong>Welcome to Madrid!</strong>
+        </h2>
+        <p class="mx-5 mb-5">Search for <strong>Michellin Stars</strong> restaurants in your area. 
+        </p>
+        <a class="btn btn-outline-white btn-md">
+          <i class="fas fa-clone left"></i>
+          View restaurants</a>
+      </div>
+    </div>
+  </div>
+</div> #}
+<div class="card mb-3">
+  <img src="{{ asset('images/restaurante1.jpg') }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Welcome to Madrid!</h5>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block stylesheets %}
+  <style>
+  img {
+    height: 300px;
+  }
+  </style>
+{% endblock %}
