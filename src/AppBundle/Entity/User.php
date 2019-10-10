@@ -29,7 +29,6 @@ class User implements UserInterface
      */
     private $username;
 
-  
     private $plainPassword;
 
     /**
@@ -105,6 +104,16 @@ class User implements UserInterface
     public function getPassword()
     {
         return $this->password;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
     }
 
     /**
