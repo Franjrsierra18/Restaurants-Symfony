@@ -103,4 +103,38 @@ class Restaurante
     {
         return $this->localidad;
     }
+
+    /**
+     * Add comida
+     *
+     * @param \AppBundle\Entity\Comida $comida
+     *
+     * @return Restaurante
+     */
+    public function addComida(\AppBundle\Entity\Comida $comida)
+    {
+        $this->comida[] = $comida;
+
+        return $this;
+    }
+
+    /**
+     * Remove comida
+     *
+     * @param \AppBundle\Entity\Comida $comida
+     */
+    public function removeComida(\AppBundle\Entity\Comida $comida)
+    {
+        $this->comida->removeElement($comida);
+    }
+
+    /**
+     * Get comida
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComida()
+    {
+        return $this->comida;
+    }
 }

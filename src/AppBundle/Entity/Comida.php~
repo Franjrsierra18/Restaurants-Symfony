@@ -98,5 +98,28 @@ class Comida
     {
         return $this->descripcion;
     }
-}
 
+    /**
+     * Set restaurante
+     *
+     * @param \AppBundle\Entity\Restaurante $restaurante
+     *
+     * @return Comida
+     */
+    public function setRestaurante(\AppBundle\Entity\Restaurante $restaurante = null)
+    {
+        $this->restaurante = $restaurante;
+
+        return $this;
+    }
+
+    /**
+     * Get restaurante
+     *
+     * @return \AppBundle\Entity\Restaurante
+     */
+    public function getRestaurante()
+    {
+        return $this->restaurante;
+    }
+}

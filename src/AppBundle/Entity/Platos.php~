@@ -125,4 +125,3 @@ class Platos
         return $this->restaurante;
     }
 }
-
