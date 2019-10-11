@@ -23,10 +23,9 @@ class RestaurantesController extends Controller
   public function restauranteAction(Request $request)
   {
     $repository = $this->getDoctrine()->getRepository(Restaurante::class);
-
     $restaurantes = $repository->findAll();
-
     dump($restaurantes);
+    
 
     return $this->render('default/restaurantes.html.twig', ['restaurantes' => $restaurantes]);
   }
@@ -103,8 +102,12 @@ class RestaurantesController extends Controller
    */
   public function show($id)
   {
-    $restaurante = $this->getDoctrine()->getRepository(Restaurante::class)->find($id);
-    return $this->render('default/show.html.twig', array('restaurante' => $restaurante));
+    $rest = $this->getDoctrine()->getRepository(Restaurante::class)->find($id);
+
+    $repoComida = $this->getDoctrine()->getRepository(Comida::class)->findAll();
+    dump($repoComida);
+
+    return $this->render('default/show.html.twig', ['restaurante' => $rest, 'comidas' => $repoComida]);
   }
 
   /**

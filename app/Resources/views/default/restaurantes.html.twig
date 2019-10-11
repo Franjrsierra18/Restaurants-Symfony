@@ -6,7 +6,7 @@
 
   <div class="card-deck">
     <div class="row">
-      {% for restaurante in restaurantes%}
+      {% for restaurante in restaurantes %}
         <div class="col-lg-4">
           <div class="card my-3">
             <img src="{{ asset("images/restaurante#{restaurante.id}.jpg") }}" class="card-img-top" alt="restaurante1">
@@ -17,10 +17,10 @@
               <a href="/restaurantes/{{ restaurante.id }}" class="btn btn-dark">Show</a>
               <a href="/restaurantes/edit/{{ restaurante.id }}" class="btn btn-warning">Edit</a>
               <a href="/restaurantes/delete/{{ restaurante.id }}" class="btn btn-danger delete-article" data-id="{{ restaurante.id }}">Delete</a>
-              <p class="card-text">{{ restaurante.localidad }}.This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
             <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
+              <small class="text-muted">{{ restaurante.localidad }}</small>
             </div>
           </div>
         </div>

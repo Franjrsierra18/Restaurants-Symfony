@@ -36,6 +36,8 @@ class Comida
     private $descripcion;
 
     /**
+     * @var int
+     * 
      * @ORM\ManyToOne(targetEntity="Restaurante", inversedBy="Comida")
      * @ORM\JoinColumn(name="restaurante_id", referencedColumnName="id")
      */
